@@ -17,6 +17,8 @@ app.use(express.json())
 app.post("/api/grocery"), (req, res) => {
     let {item} = req.body
     addItem(item)
+    rollbar.log('gorcery item added successfully')
+    items.push(item)
     res.status(200).send(items)
 }
 
