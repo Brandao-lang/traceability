@@ -19,6 +19,10 @@ app.get('/', (req, res) => {
     rollbar.info('html file served succesfully')
 })
 
+app.get('/js', (req, res) => {
+    express.static('./main/main.js')
+})
+
 app.post('/api/grocery', (req, res) => {
     let {item} = req.body
     // addItem(item)
@@ -42,10 +46,8 @@ app.post('/api/grocery', (req, res) => {
     } 
 })
 
-
 const port = process.env.PORT || 4343
 app.use(rollbar.errorHandler())
-
 
 app.listen(port, () => {
     console.log(`running on port: ${port}`)

@@ -15,6 +15,10 @@ function submitHandler (e) {
                 itemContainer.innerHTML += `<p>${itemName}</p>`;
               });
         })
+        .catch((err) => {
+            itemInput.value = ""
+            alert('must enter in a list item')
+        })
 }
 
 addForm.addEventListener("submit", submitHandler);
