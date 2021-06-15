@@ -14,18 +14,35 @@ const app = express()
 app.use(express.json())
 items = []
 
-app.post('/api/grocery'), (req, res) => {
-    let {item} = req.body
-    // addItem(item)
-    items.push(item)
-    rollbar.log('gorcery item added successfully')
-    res.status(200).send(items)
-}
-
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/main/index.html'))
     rollbar.info('html file served succesfully')
 })
+
+app.post('/api/grocery', (req, res) => {
+    let {item} = req.body
+    // addItem(item)
+    // items.push(item)
+    // rollbar.log('gorcery item added successfully')
+    // res.status(200).send(items)
+    const index = items.findIndex((itemName) => {
+        itemtName === item
+    })
+
+    if (index === -1 && item !== '') {
+        items.push(item)
+        rollbar.log('item added successfully')
+        res.status(200).send(items)
+    } else if (item === '') {
+        rollbar.error(`item not given`)
+        res.status(400).send('must provide a list item')
+    } else {
+        rollbar.error('already have this item')
+        res.status(400).send('this item is already in this list')
+    } 
+})
+
+
 
 app.use(rollbar.errorHandler())
 
