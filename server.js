@@ -26,7 +26,7 @@ app.post('/api/grocery', (req, res) => {
     // rollbar.log('gorcery item added successfully')
     // res.status(200).send(items)
     const index = items.findIndex((itemName) => {
-        itemtName === item
+        itemName === item
     })
 
     if (index === -1 && item !== '') {
@@ -43,10 +43,10 @@ app.post('/api/grocery', (req, res) => {
 })
 
 
-
+const port = process.env.PORT || 4343
 app.use(rollbar.errorHandler())
 
-const port = process.env.PORT || 4343
+
 app.listen(port, () => {
     console.log(`running on port: ${port}`)
 })
