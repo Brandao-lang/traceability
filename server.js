@@ -13,14 +13,16 @@ rollbar.log("Hello world!");
 const app = express()
 app.use(express.json())
 
+
 app.post("/api/grocery"), (req, res) => {
     let {item} = req.body
     addItem(item)
+    res.status(200).send(items)
 }
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/main/index.html'))
-    // rollbar.info('html file served succesfully')
+    rollbar.info('html file served succesfully')
 })
 
 
