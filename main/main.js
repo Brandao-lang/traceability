@@ -7,7 +7,7 @@ function submitHandler (e) {
     e.preventDefault()
     axios
     .post('/api/grocery', {item: itemInput.value})
-        .then(res => {
+        .then((res) => {
             itemContainer.innerHTML = "";
             itemInput.value = "";
 

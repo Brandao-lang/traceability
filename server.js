@@ -14,11 +14,11 @@ const app = express()
 app.use(express.json())
 items = []
 
-app.post("/api/grocery"), (req, res) => {
+app.post('/api/grocery'), (req, res) => {
     let {item} = req.body
     // addItem(item)
-    rollbar.log('gorcery item added successfully')
     items.push(item)
+    rollbar.log('gorcery item added successfully')
     res.status(200).send(items)
 }
 
@@ -27,16 +27,7 @@ app.get('/', (req, res) => {
     rollbar.info('html file served succesfully')
 })
 
-
-
-
-
-
-
-
-
-
-
+app.use(rollbar.errorHandler())
 
 const port = process.env.PORT || 4343
 app.listen(port, () => {
