@@ -13,8 +13,9 @@ rollbar.log("Hello world!");
 const app = express()
 app.use(express.json())
 
-app.get("/api/people"), (req, res) => {
-    addPerson(steve)
+app.post("/api/grocery"), (req, res) => {
+    let {item} = req.body
+    addItem(item)
 }
 
 app.get('/', (req, res) => {
